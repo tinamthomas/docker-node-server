@@ -1,13 +1,12 @@
-FROM node:8.12.0
+FROM node:12
 
 WORKDIR /app
 
 COPY src /app/src
-COPY package.json tsconfig.json /app/
+COPY package.json tsconfig.json yarn.lock /app/ 
 
-RUN npm install
+RUN yarn install
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start"]
-
+CMD ["yarn", "start"]
