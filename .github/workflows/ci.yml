@@ -3,12 +3,14 @@ name: CI
 on: [push]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-    
+    strategy:
+      matrix:
+        node-version: [12.x]
     steps:
     - uses: actions/checkout@v1
     - name: Run a one-line script
-      run: echo Hello, world!
+    - run: yarn install
+    - run: yarn test
     
