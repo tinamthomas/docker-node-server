@@ -13,6 +13,8 @@ jobs:
       - name: Git stuff
         run: |
           touch somefile.txt
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
           echo "hello" > somefile.txt
           git checkout -b gh-pages
           git add somefile.txt
