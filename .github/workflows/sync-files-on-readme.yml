@@ -4,17 +4,18 @@ on:
   push:
     branches:
       - master
-
 jobs:
-  test:
+  build:
+    # needs: nothing
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
     steps:
-    - uses: actions/checkout@v1
-    - name: Install dependencies
-      run: yarn install
-    - name: Run test
-      run: yarn test
-    
+      - uses: actions/checkout@v1
+      - name: Git stuff
+        run: |
+          touch somefile.txt
+          echo "hello" > somefile.txt
+          git checkout -b gh-pages
+          git add somefile.txt
+          git commit -m "message"
+          git remote set-url origin https://github.com/tinamthomas/docker-node-server.git
+          git push origin HEAD:gh-pages
